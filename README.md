@@ -1,5 +1,8 @@
 # Medical Insurance Cost Analysis and Prediction
 
+## Live Dashboard
+
+https://medical-insurance-cost-analysis.streamlit.app
 
 This project analyses medical insurance costs using a Kaggle dataset containing customer demographic and health-related information.
 
