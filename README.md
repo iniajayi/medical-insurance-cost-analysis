@@ -6,7 +6,9 @@ https://medical-insurance-cost-analysis.streamlit.app
 
 This project analyses medical insurance costs using a Kaggle dataset containing customer demographic and health-related information.
 
-The aim is to understand which factors are associated with higher insurance charges and to build a simple regression model that predicts estimated insurance costs.
+The aim is to understand which factors are associated with higher insurance charges and to build a simple regression model that predicts estimated insurance costs. 
+
+I wanted to try implementing a few new things I learnt so I hope you like it 💕
 
 ## Dataset
 
@@ -44,9 +46,7 @@ The target variable is `charges`, which represents medical insurance cost for ea
 5. How do charges differ by region?
 6. Which customer groups appear to have the highest cost profile?
 
-## And last but not least find my project structure
-
-# I wanted to try implementing a few new things I learnt so I hope you liked it 💕
+## And last but not least, here's my project structure
 
 dashboard/
 data/
