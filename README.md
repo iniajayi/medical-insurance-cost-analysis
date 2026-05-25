@@ -32,7 +32,7 @@ The target variable is `charges`, which represents medical insurance cost for ea
 - scikit-learn
 - Git and GitHub
 
-# I based my vsiualtions around the following business questions:
+# I based my visualisations around the following business questions:
 
 1. What is the average insurance charge?
 2. Do smokers have higher insurance charges?
@@ -43,7 +43,7 @@ The target variable is `charges`, which represents medical insurance cost for ea
 
 ## And last but not least find my project structure
 
-# This is my first solo project and I wnated to try implementing a few things so I hope you liked it 💕
+# I wanted to try implementing a few new things I learnt so I hope you liked it 💕
 
 dashboard/
 data/
