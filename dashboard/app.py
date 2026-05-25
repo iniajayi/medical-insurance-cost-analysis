@@ -1,9 +1,13 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import pickle
 
 # Load the cleaned insurance dataset
 df = pd.read_csv("data/cleaned_insurance.csv")
+
+with open("models/insurance_cost_model.pkl", "rb") as file:
+    model = pickle.load(file)
 
 # Set up the Streamlit page
 st.set_page_config(
@@ -140,6 +144,79 @@ selected_bmi_category = st.sidebar.multiselect(
     options=df["bmi_category"].unique(),
     default=df["bmi_category"].unique()
 )
+
+st.sidebar.divider()
+
+st.sidebar.subheader("Cost Prediction")
+
+input_age = st.sidebar.number_input(
+    "Age",
+    min_value=18,
+    max_value=100,
+    value=30
+)
+
+input_sex = st.sidebar.selectbox(
+    "Sex",
+    options=df["sex"].unique()
+)
+
+input_bmi = st.sidebar.number_input(
+    "BMI",
+    min_value=10.0,
+    max_value=60.0,
+    value=25.0
+)
+
+input_children = st.sidebar.number_input(
+    "Number of children",
+    min_value=0,
+    max_value=10,
+    value=0
+)
+
+input_smoker = st.sidebar.selectbox(
+    "Smoker",
+    options=df["smoker"].unique()
+)
+
+input_region = st.sidebar.selectbox(
+    "Region",
+    options=df["region"].unique()
+)
+
+input_smoker_binary = 1 if input_smoker == "yes" else 0
+
+input_bmi_category = pd.cut(
+    [input_bmi],
+    bins=[0, 18.5, 24.9, 29.9, 100],
+    labels=["Underweight", "Healthy", "Overweight", "Obese"]
+)[0]
+
+input_age_group = pd.cut(
+    [input_age],
+    bins=[0, 25, 35, 45, 55, 100],
+    labels=["18-25", "26-35", "36-45", "46-55", "56+"]
+)[0]
+
+prediction_data = pd.DataFrame({
+    "age": [input_age],
+    "sex": [input_sex],
+    "bmi": [input_bmi],
+    "children": [input_children],
+    "smoker": [input_smoker],
+    "region": [input_region],
+    "smoker_binary": [input_smoker_binary],
+    "bmi_category": [input_bmi_category],
+    "age_group": [input_age_group]
+})
+
+if st.sidebar.button("Predict insurance charge"):
+    predicted_charge = model.predict(prediction_data)[0]
+
+    st.sidebar.success(
+        f"Estimated charge: £{predicted_charge:,.2f}"
+    )
 
 # Filter the data based on the options selected by the user
 filtered_df = df[
