@@ -365,3 +365,69 @@ st.dataframe(
     filtered_df,
     use_container_width=True
 )
+
+st.divider()
+
+st.subheader("Model Performance")
+
+model_col1, model_col2, model_col3 = st.columns(3)
+
+model_col1.metric("Model Type", "Linear Regression")
+model_col2.metric("Mean Absolute Error", "£4,283.36")
+model_col3.metric("R² Score", "0.782")
+
+st.markdown("""
+<div style='color:#880e4f;'>
+The model was evaluated using a train-test split. 
+
+The Linear Regression model achieved an R² score of 0.782, meaning it explained around 78% of the variation in insurance charges.
+
+The model achieved a Mean Absolute Error of approximately £4,283, meaning predictions were typically within a few thousand pounds of the actual insurance cost.
+
+These results suggest that demographic and lifestyle variables such as smoking status, BMI and age were useful predictors of insurance charges.
+
+</div>
+
+""", unsafe_allow_html=True)
+
+st.divider()
+
+st.subheader("SQL Analysis Summary")
+
+st.markdown("""
+<div style='color:#880e4f;'>
+
+The SQL analysis was used to answer business-style questions about the main factors linked to higher insurance charges.
+
+- Smoking status showed one of the clearest differences in average insurance charges.
+
+- BMI category helped compare costs across different health-risk groups.
+
+- Age group analysis showed that older customers generally had higher average charges.
+
+- Regional analysis was used to compare average costs across different locations.
+
+- Combined grouping by smoker status, BMI category and age group helped identify higher-cost customer profiles.
+
+</div>
+""", unsafe_allow_html=True)
+
+st.divider()
+
+st.subheader("Key Insights")
+
+st.markdown("""
+<div style='color:#880e4f;'>
+
+- Smoking status appeared to be one of the strongest cost drivers, with smokers showing substantially higher insurance charges than non-smokers.
+
+- Higher BMI values were generally associated with increased insurance costs, especially when combined with smoking.
+
+- Older customers tended to have higher average insurance charges.
+
+- The regression model used demographic and lifestyle variables to estimate insurance charges.
+
+- The dashboard allows users to explore both historical insurance cost patterns and live predicted costs.
+
+</div>
+""", unsafe_allow_html=True)
